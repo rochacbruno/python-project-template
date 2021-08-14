@@ -18,11 +18,11 @@ def read(*names, **kwargs):
 setup(
     name="project_name",
     version="0.1.0",
-    description="Some objects could be project_name",
-    url="https://github.com/yourname/project_name/",
+    description="project_description",
+    url="https://github.com/author_name/project_name/",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    author="Your Name",
+    author="author_name",
     packages=find_packages(exclude=["tests"]),
     install_requires=[],
     entry_points={
@@ -39,6 +39,7 @@ setup(
             "codecov",
             "mypy",
             "gitchangelog",
+            "mkdocs",
         ],
     },
 )
