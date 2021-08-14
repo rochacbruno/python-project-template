@@ -64,5 +64,5 @@ release:          ## Create a new tag for release.
 	@gitchangelog > HISTORY.md
 	@git add HISTORY.md
 	@git commit -m "release: version $${TAG}"
-	@git push --tags
+	@git push -u origin HEAD --tags
 	@echo "Github Actions will detect the new tag and release the new version."

@@ -1,15 +1,15 @@
-```md
-# HOW TO USE THIS TEMPLATE
 
-- From github repository creation page select the template
+> HOW TO USE THIS TEMPLATE
+
+- click on 'Use this template' or go to https://github.com/rochacbruno/python-project-template/generate
 - If you want coverage reports and release to PiPy
   On repository settings->secrets add your PIPY_API_TOKEN and CODECOV_TOKEN
 - Then clone your new project and adjust for your needs
 - Replace `project_name` with the name of your project
 - Replace `yourname` with your github username
 - Edit setup.py to adjust your project information
-```
 
+> Delete all lines above this
 # ProjectName
 
 [![codecov](https://codecov.io/gh/yourname/project_name/branch/main/graph/badge.svg?token=I9ZGCFTQT9)](https://codecov.io/gh/yourname/project_name)
@@ -53,4 +53,5 @@ lint:             ## Run pep8, black, mypy linters.
 test: lint        ## Run tests and generate coverage report.
 watch:            ## Run tests on every change.
 clean:            ## Clean unused files.
+release:          ## Create a new release on github.
 ```

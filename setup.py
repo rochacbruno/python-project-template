@@ -1,14 +1,26 @@
 """Python setup.py for project_name package"""
-from pathlib import Path
-
+import io
+import os
 from setuptools import find_packages, setup
+
+
+def read(*names, **kwargs):
+    """Read a file."""
+    content = ""
+    with io.open(
+        os.path.join(os.path.dirname(__file__), *names),
+        encoding=kwargs.get("encoding", "utf8"),
+    ) as open_file:
+        content = open_file.read().strip()
+    return content
+
 
 setup(
     name="project_name",
     version="0.1.0",
     description="Some objects could be project_name",
     url="https://github.com/yourname/project_name/",
-    long_description=Path("README.md").read_text(),
+    long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="Your Name",
     packages=find_packages(exclude=["tests"]),
