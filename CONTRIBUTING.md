@@ -1,5 +1,7 @@
+# How to develop on this project
+
 ```bash 
-❯ make        
+❯ make     
 Usage: make <target>
 
 Targets:
@@ -12,4 +14,5 @@ watch:            ## Run tests on every change.
 clean:            ## Clean unused files.
 virtualenv:       ## Create a virtual environment.
 release:          ## Create a new tag for release.
+docs:             ## Build the documentation.
 ```

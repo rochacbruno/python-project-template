@@ -66,3 +66,10 @@ release:          ## Create a new tag for release.
 	@git commit -m "release: version $${TAG} 🚀"
 	@git push -u origin HEAD --tags
 	@echo "Github Actions will detect the new tag and release the new version."
+
+.PHONY: docs
+docs:             ## Build the documentation.
+	@echo "building documentation ..."
+	@mkdocs build
+	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
+
