@@ -1,0 +1,47 @@
+name: Rename the project from template
+
+on: [push]
+
+jobs:
+  rename-project:
+    if: ${{ github.repository	!= 'rochacbruno/python-project-template' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # by default, it uses a depth of 1
+          # this fetches all history so that we can read each commit
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Rename the project
+        run: |
+          echo "Renaming the project with -a ${{ github.repository_owner }} -n ${{ github.event.repository.name }}"
+          # .github/workflows/rename_project.sh -a $GITHUB_AUTHOR -n $GITHUB_REPO -d "$GITHUB_DESCRIPTION"
+
+      - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+        shell: bash
+
+      - run: echo "REPOSITORY_OWNER=$(echo '${{ github.repository }}' | awk -F '/' '{print $1}')" >> $GITHUB_ENV
+        shell: bash
+
+      - run: echo "REPOSITORY_URL=$(echo '${{ github.repository }}' | awk -F '/' '{print $1}')" >> $GITHUB_ENV
+        shell: bash
+
+      - run: echo "REPOSITORY_DESCRIPTION=$(echo '${{ github.repository_description }}')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: show env info
+        run: |
+          echo "¨${{ env.REPOSITORY_NAME }} ${{ env.REPOSITORY_OWNER }} ${{ env.REPOSITORY_URL }} ${{ env.REPOSITORY_DESCRIPTION }}"
+
+      # - name: Get last commit message
+      #   id: last-commit-message
+      #   run: |
+      #     echo "::set-output name=msg::$(git log -1 --pretty=%s)"
+      
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: ${{ steps.last-commit-message.outputs.msg }}
+      #     commit_options: '--amend --no-edit'
+      #     push_options: --force

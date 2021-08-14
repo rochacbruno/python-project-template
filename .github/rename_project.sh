@@ -32,3 +32,4 @@ mv project_name $name
 
 # This command runs only once!
 rm -rf .github/rename_project.sh
+rm -rf .github/workflows/rename_project.yml
