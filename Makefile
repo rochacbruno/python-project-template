@@ -58,13 +58,11 @@ virtualenv:       ## Create a virtual environment.
 
 .PHONY: release
 release:          ## Create a new tag for release.
-	@echo "creating new release ...\n"
-	@echo "What is the version?: "; \
-    read VERSION; \
-    echo "creating tag for ", $$(VERSION); \
-	git tag $$(VERSION); \
-	gitchangelog > HISTORY.md; \
-	git add HISTORY.md; \
-	git commit -m "release: version $$(VERSION)"; \
-	git push --tags; \
-	echo "Github Actions will detect the new tag and release the new version."
+	@read -p "tag? : " TAG
+	@echo "creating git tag : $${TAG}"
+	@git tag $${TAG}
+	@gitchangelog > HISTORY.md
+	@git add HISTORY.md
+	@git commit -m "release: version $${TAG}"
+	@git push --tags
+	@echo "Github Actions will detect the new tag and release the new version."
