@@ -4,7 +4,7 @@ from . import BaseClass, base_function  # pragma: no cover
 def main() -> None:  # pragma: no cover
     """
     The main function executes on commands:
-    `python -m project_name` and `$ project_name`.
+    `python -m project_name` and `$ project_name `.
 
     This is your program's entry point.
 
