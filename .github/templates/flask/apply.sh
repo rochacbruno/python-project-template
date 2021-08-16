@@ -30,4 +30,17 @@ cp .github/templates/flask/settings.toml settings.toml
 
 # install
 make clean
-make install
+
+if [ ! -f pyproject.toml ]
+then
+    make virtualenv
+    make install
+    echo "Applied Flask template"
+    echo "Ensure you activate your env with 'source .venv/bin/activate'"
+    echo "then run project_name or python -m project_name"
+else
+    poetry install
+    echo "Applied Flask template"
+    echo "Ensure you activate your env with 'poetry shell'"
+    echo "then run project_name or python -m project_name or poetry run project_name"
+fi
