@@ -17,8 +17,18 @@ A low dependency and really simple to start project template for Python Projects
 4. Read the file [CONTRIBUTING.md](CONTRIBUTING.md)
 5. Then clone your new project and happy coding!
 
+> **NOTE**: **WAIT** until first CI run on github actions before cloning your new project.
+
 ### What is included on this template?
 
+- 🖼️ Templates for starting multiple application types:
+  * **Basic low dependency** Python program (default)
+  * **Flask** with database, admin interface, restapi and authentication.
+  * **FastAPI** with database, authentication and Swagger UI.
+  * **Click** CLI
+  * **Typer** CLI
+  * more  
+  **Run `make init` to generate a new project based on a template.**
 - 📦 A basic [setup.py](setup.py) file to provide installation, packaging and distribution for your project.  
   Template uses setuptools because it's the de-facto standard for Python packages, you can run `make switch-to-poetry` later if you want.
 - 🤖 A [Makefile](Makefile) with the most useful commands to install, test, lint, format and release your project.
@@ -32,7 +42,6 @@ A low dependency and really simple to start project template for Python Projects
 - 🛳️ Automatic release to [PyPI](https://pypi.org) using [twine](https://twine.readthedocs.io/en/latest/) and github actions.
 - 🎯 Entry points to execute your program using `python -m <project_name>` or `$ project_name` with basic CLI argument parsing.
 - 🔄 Continuous integration using [Github Actions](.github/workflows/) with jobs to lint, test and release your project on Linux, Mac and Windows environments.
-- 🖼️ An easy way to add a flask, fastapi, click or Typer application to your project with `make init`.
 
 > Curious about architectural decisions on this template? read [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  
 > If you want to contribute to this template please open an [issue](https://github.com/rochacbruno/python-project-template/issues) or fork and send a PULL REQUEST.

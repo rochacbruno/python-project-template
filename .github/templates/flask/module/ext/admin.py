@@ -14,7 +14,7 @@ admin = Admin()
 
 
 class UserAdmin(sqla.ModelView):
-    column_list = ['username']
+    column_list = ["username"]
     can_edit = False
 
     def on_model_change(self, form, model, is_created):

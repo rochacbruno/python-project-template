@@ -6,8 +6,8 @@ from project_name.models import User
 
 def verify_login(user):
     """Validates user login"""
-    username = user.get('username')
-    password = user.get('password')
+    username = user.get("username")
+    password = user.get("password")
     if not username or not password:
         return False
     existing_user = User.query.filter_by(username=username).first()
@@ -21,7 +21,7 @@ def verify_login(user):
 def create_user(username, password):
     """Creates a new user"""
     if User.query.filter_by(username=username).first():
-        raise RuntimeError(f'{username} already exists')
+        raise RuntimeError(f"{username} already exists")
     user = User(username=username, password=generate_password_hash(password))
     db.session.add(user)
     db.session.commit()
