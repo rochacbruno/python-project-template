@@ -9,17 +9,19 @@ help:             ## Show the help.
 
 .PHONY: install
 install:          ## Install the project in dev mode.
-	pip install -e .[test]
+	@if [ ! -f pyproject.toml ]; then pip install -e .[test]; else poetry install --dev; fi
 
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
 	isort project_name/
 	black -l 79 project_name/
+	black -l 79 tests/
 
 .PHONY: lint
 lint:             ## Run pep8, black, mypy linters.
 	flake8 project_name/
 	black -l 79 --check project_name/
+	black -l 79 --check tests/
 	mypy project_name/
 
 .PHONY: test
@@ -38,13 +40,15 @@ clean:            ## Clean unused files.
 	@find ./ -name '__pycache__' -exec rm -rf {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
 	@find ./ -name '*~' -exec rm -f {} \;
-	rm -rf .cache
-	rm -rf build
-	rm -rf dist
-	rm -rf *.egg-info
-	rm -rf htmlcov
-	rm -rf .tox/
-	rm -rf docs/_build
+	@rm -rf .cache
+	@rm -rf .pytest_cache
+	@rm -rf .mypy_cache
+	@rm -rf build
+	@rm -rf dist
+	@rm -rf *.egg-info
+	@rm -rf htmlcov
+	@rm -rf .tox/
+	@rm -rf docs/_build
 
 .PHONY: virtualenv
 virtualenv:       ## Create a virtual environment.
@@ -58,12 +62,13 @@ virtualenv:       ## Create a virtual environment.
 
 .PHONY: release
 release:          ## Create a new tag for release.
-	@read -p "tag? : " TAG
+	@echo "WARNING: This operation will create s version tag and push to github"
+	@read -p "Version? (provide the next x.y.z semver) : " TAG
 	@echo "creating git tag : $${TAG}"
 	@git tag $${TAG}
+	@echo "$${TAG}" > project_name/VERSION
 	@gitchangelog > HISTORY.md
-	@git add HISTORY.md
-	@git add setup.py
+	@git add project_name/VERSION HISTORY.md
 	@git commit -m "release: version $${TAG} 🚀"
 	@git push -u origin HEAD --tags
 	@echo "Github Actions will detect the new tag and release the new version."
@@ -74,3 +79,20 @@ docs:             ## Build the documentation.
 	@mkdocs build
 	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
 
+.PHONY: switch-to-poetry
+switch-to-poetry: ## Switch to poetry package manager.
+	@echo "Switching to poetry ..."
+	@if ! poetry --version > /dev/null; then echo 'poetry is required, install from https://python-poetry.org/'; exit 1; fi
+	@rm -rf .venv
+	@poetry init --name=project_name --author=author_name
+	@for item in $(cat requirements.txt); do   poetry add "${item}"; done
+	@for item in $(cat requirements-test.txt); do   poetry add --dev "${item}"; done
+	@poetry install
+	@echo "You have switched to https://python-poetry.org/ package manager."
+	@echo "Run `poetry shell`"
+
+.PHONY: init
+init:             ## Initialize the project based on an application template.
+	@read -p "Which template do you want to apply? [flask, fastapi, click, typer]? : " APPTEMPLATE
+	@echo "Initializing project based on $${APPTEMPLATE} template ..."
+	@./.github/templates/$${APPTEMPLATE}/apply.sh

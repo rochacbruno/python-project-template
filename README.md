@@ -1,40 +1,48 @@
 
-> HOW TO USE THIS TEMPLATE
+# Python Project Template
 
-1. Click on 'Use this template' or go to https://github.com/rochacbruno/python-project-template/generate
-2. Wait until the first run of CI finishes (Github Actions will process the template and commit to your new repo)
-3. If you want coverage reports and automatic release to PyPI
-  On repository `settings->secrets` add your `PIPY_API_TOKEN` and `CODECOV_TOKEN` (get the tokens on respective websites)
-4. Read the file `CONTRIBUTING.md`
-5. Then clone your new project and start coding!
+A low dependency and really simple to start project template for Python Projects.
 
-What is included?
+### HOW TO USE THIS TEMPLATE
 
-- A full feature Makefile with common targets to:
-  - lint all python files
-  - run all tests
-  - run all tests and coverage report
-  - format code using black
-  - run mypy
-  - release to github and pypi
-  - create a virtualenv and install project for development
-- A basic project structure with
-  - `.gitignore`
-  - Github Actions CI
-  - `setup.py` with common parameters
-  - Changelog generation
-  - basic test structure using `pytest`
-  - Entry point to run `$ project_name`
-  - Entry point to run `$ python -m project_name`
-- Basic documentation structure using `mkdocs`
-- Integration with `codecov` and `pypi`
+> **DO NOT FORK** this is meant to be used from **[Use this template](https://github.com/rochacbruno/python-project-template/generate)** feature.
 
-> Delete all lines above this ^^^
+1. Click on **[Use this template](https://github.com/rochacbruno/python-project-template/generate)**
+3. Give a name to your project  
+   (e.g. `my_awesome_project` recommendation is to use all lowercase and underscores separation for repo names.)
+3. Wait until the first run of CI finishes  
+   (Github Actions will process the template and commit to your new repo)
+4. If you want [codecov](https://about.codecov.io/sign-up/) Reports and Automatic Release to [PyPI](https://pypi.org)  
+  On the new repository `settings->secrets` add your `PIPY_API_TOKEN` and `CODECOV_TOKEN` (get the tokens on respective websites)
+4. Read the file [CONTRIBUTING.md](CONTRIBUTING.md)
+5. Then clone your new project and happy coding!
+
+### What is included on this template?
+
+- 📦 A basic [setup.py](setup.py) file to provide installation, packaging and distribution for your project.  
+  Template uses setuptools because it's the de-facto standard for Python packages, you can run `make switch-to-poetry` later if you want.
+- 🤖 A [Makefile](Makefile) with the most useful commands to install, test, lint, format and release your project.
+- 📃 Documentation structure using [mkdocs](http://www.mkdocs.org)
+- 💬 Auto generation of change log using **gitchangelog** to keep a HISTORY.md file automatically based on your commit history on every release.
+- 🐋 A simple [Containerfile](Containerfile) to build a container image for your project.  
+  `Containerfile` is a more open standard for building container images than Dockerfile, you can use buildah or docker with this file.
+- 🧪 Testing structure using [pytest](https://docs.pytest.org/en/latest/)
+- ✅ Code linting using [flake8](https://flake8.pycqa.org/en/latest/)
+- 📊 Code coverage reports using [codecov](https://about.codecov.io/sign-up/)
+- 🛳️ Automatic release to [PyPI](https://pypi.org) using [twine](https://twine.readthedocs.io/en/latest/) and github actions.
+- 🎯 Entry points to execute your program using `python -m <project_name>` or `$ project_name` with basic CLI argument parsing.
+- 🔄 Continuous integration using [Github Actions](.github/workflows/) with jobs to lint, test and release your project on Linux, Mac and Windows environments.
+- 🖼️ An easy way to add a flask, fastapi, click or Typer application to your project with `make init`.
+
+> Curious about architectural decisions on this template? read [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  
+> If you want to contribute to this template please open an [issue](https://github.com/rochacbruno/python-project-template/issues) or fork and send a PULL REQUEST.
+
+<!--  DELETE THE LINES ABOVE THIS AND WRITE YOUR PROJECT README BELOW -->
 
 ---
 # project_name
 
-[![codecov](https://codecov.io/gh/author_name/project_name/branch/main/graph/badge.svg?token=I9ZGCFTQT9)](https://codecov.io/gh/author_name/project_name)
+[![codecov](https://codecov.io/gh/author_name/project_name/branch/main/graph/badge.svg?token=project_name_token_here)](https://codecov.io/gh/author_name/project_name)
 [![CI](https://github.com/author_name/project_name/actions/workflows/main.yml/badge.svg)](https://github.com/author_name/project_name/actions/workflows/main.yml)
 
 project_description

@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+<h1>{{ product.name }}</h1>
+
+<div class="jumbotron">
+<h2>R$ {{ "%0.2f" | format(product.price)}}</h2>
+<p>
+    {{product.description}}
+</p>
+</div>
+</div>
+{% endblock %}
