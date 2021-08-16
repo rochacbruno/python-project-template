@@ -73,7 +73,7 @@ Wait CI to run and one of the developers will review your PR.
 This project comes with a `Makefile` that contains a number of useful utility.
 
 ```bash 
-❯ make     
+❯ make
 Usage: make <target>
 
 Targets:
@@ -87,6 +87,8 @@ clean:            ## Clean unused files.
 virtualenv:       ## Create a virtual environment.
 release:          ## Create a new tag for release.
 docs:             ## Build the documentation.
+switch-to-poetry: ## Switch to poetry package manager.
+init:             ## Initialize the project based on an application template.
 ```
 
 ## Making a new release
@@ -104,10 +106,8 @@ To trigger a new release all you need to do is.
     * Make your changes following the steps described above.
     * Commit your changes following the [conventional git commit messages](https://www.conventionalcommits.org/en/v1.0.0/).
 2. Run the tests to ensure everything is working.
-3. Change the `setup.py` version number to the desired version following the [semantic versioning](https://semver.org/) standard.
 4. Run `make release` to create a new tag and push it to the remote repo.
 
-the `make release` will ask you the version number to create the tag, pass in the same 
-version you included in the `setup.py` file, ex: type `0.1.1` when you are asked.
+the `make release` will ask you the version number to create the tag, ex: type `0.1.1` when you are asked.
 
-> **CAUTION**:  The make realease will change local changelog files and commit all the unstaged changes you have.
+> **CAUTION**:  The make release will change local changelog files and commit all the unstaged changes you have.
