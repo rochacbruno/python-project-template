@@ -1,4 +1,5 @@
 .ONESHELL:
+ENV_PREFIX=$(shell python -c "if __import__('pathlib').Path('.venv/bin/pip').exists(): print('.venv/bin/')")
 
 .PHONY: help
 help:             ## Show the help.
@@ -7,32 +8,41 @@ help:             ## Show the help.
 	@echo "Targets:"
 	@fgrep "##" Makefile | fgrep -v fgrep
 
+
+.PHONY: show
+show:             ## Show the current environment.
+	@echo "Current environment:"
+	@echo "Running using $(ENV_PREFIX)"
+	@$(ENV_PREFIX)python -V
+	@$(ENV_PREFIX)python -m site
+
 .PHONY: install
 install:          ## Install the project in dev mode.
-	@if [ ! -f pyproject.toml ]; then pip install -e .[test]; else poetry install --dev; fi
+	@echo "Don't forget to run 'make virtualenv' if you got errors."
+	@if [ ! -f pyproject.toml ]; then $(ENV_PREFIX)pip install -e .[test]; else poetry install --dev; fi
 
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
-	isort project_name/
-	black -l 79 project_name/
-	black -l 79 tests/
+	$(ENV_PREFIX)isort project_name/
+	$(ENV_PREFIX)black -l 79 project_name/
+	$(ENV_PREFIX)black -l 79 tests/
 
 .PHONY: lint
 lint:             ## Run pep8, black, mypy linters.
-	flake8 project_name/
-	black -l 79 --check project_name/
-	black -l 79 --check tests/
-	mypy project_name/
+	$(ENV_PREFIX)flake8 project_name/
+	$(ENV_PREFIX)black -l 79 --check project_name/
+	$(ENV_PREFIX)black -l 79 --check tests/
+	$(ENV_PREFIX)mypy project_name/
 
 .PHONY: test
 test: lint        ## Run tests and generate coverage report.
-	pytest -v --cov-config .coveragerc --cov=project_name -l --tb=short --maxfail=1 tests/
-	coverage xml
-	coverage html
+	$(ENV_PREFIX)pytest -v --cov-config .coveragerc --cov=project_name -l --tb=short --maxfail=1 tests/
+	$(ENV_PREFIX)coverage xml
+	$(ENV_PREFIX)coverage html
 
 .PHONY: watch
 watch:            ## Run tests on every change.
-	ls **/**.py | entr pytest -s -vvv -l --tb=long --maxfail=1 tests/
+	ls **/**.py | entr $(ENV_PREFIX)pytest -s -vvv -l --tb=long --maxfail=1 tests/
 
 .PHONY: clean
 clean:            ## Clean unused files.
@@ -67,7 +77,7 @@ release:          ## Create a new tag for release.
 	@echo "creating git tag : $${TAG}"
 	@git tag $${TAG}
 	@echo "$${TAG}" > project_name/VERSION
-	@gitchangelog > HISTORY.md
+	@$(ENV_PREFIX)gitchangelog > HISTORY.md
 	@git add project_name/VERSION HISTORY.md
 	@git commit -m "release: version $${TAG} 🚀"
 	@git push -u origin HEAD --tags
@@ -76,7 +86,7 @@ release:          ## Create a new tag for release.
 .PHONY: docs
 docs:             ## Build the documentation.
 	@echo "building documentation ..."
-	@mkdocs build
+	@$(ENV_PREFIX)mkdocs build
 	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
 
 .PHONY: switch-to-poetry
