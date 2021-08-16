@@ -42,8 +42,8 @@ A low dependency and really simple to start project template for Python Projects
 ---
 # project_name
 
-[![codecov](https://codecov.io/gh/author_name/project_name/branch/main/graph/badge.svg?token=project_name_token_here)](https://codecov.io/gh/author_name/project_name)
-[![CI](https://github.com/author_name/project_name/actions/workflows/main.yml/badge.svg)](https://github.com/author_name/project_name/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/author_name/project_urlname/branch/main/graph/badge.svg?token=project_urlname_token_here)](https://codecov.io/gh/author_name/project_urlname)
+[![CI](https://github.com/author_name/project_urlname/actions/workflows/main.yml/badge.svg)](https://github.com/author_name/project_urlname/actions/workflows/main.yml)
 
 project_description
 
