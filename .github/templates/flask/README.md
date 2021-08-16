@@ -7,7 +7,7 @@ This is a Flask application.
 From source:
 
 ```bash
-git clone https://github.com/author_name/project_urlname
+git clone https://github.com/author_name/project_urlname project_name
 cd project_name
 make install
 ```

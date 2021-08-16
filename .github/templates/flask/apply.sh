@@ -18,6 +18,8 @@ else
 fi
 
 # Move module files
+rm -rf project_name
+rm -rf tests
 cp -R .github/templates/flask/module project_name
 cp -R .github/templates/flask/tests tests
 
