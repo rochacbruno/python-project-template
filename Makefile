@@ -9,12 +9,7 @@ help:             ## Show the help.
 
 .PHONY: install
 install:          ## Install the project in dev mode.
-	@if [ ! -f pyproject.toml ]
-	then
-		pip install -e .[test]
-	else
-		poetry install --dev
-	@fi
+	@if [ ! -f pyproject.toml ]; then pip install -e .[test]; else poetry install --dev; fi
 
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
@@ -87,10 +82,7 @@ docs:             ## Build the documentation.
 .PHONY: switch-to-poetry
 switch-to-poetry: ## Switch to poetry package manager.
 	@echo "Switching to poetry ..."
-	@if ! poetry --version > /dev/null; then
-		echo 'poetry is required, install from https://python-poetry.org/'
-		exit 1
-	@fi
+	@if ! poetry --version > /dev/null; then echo 'poetry is required, install from https://python-poetry.org/'; exit 1; fi
 	@rm -rf .venv
 	@poetry init --name=project_name --author=author_name
 	@for item in $(cat requirements.txt); do   poetry add "${item}"; done

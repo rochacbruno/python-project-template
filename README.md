@@ -23,7 +23,7 @@ A low dependency and really simple to start project template for Python Projects
   Template uses setuptools because it's the de-facto standard for Python packages, you can run `make switch-to-poetry` later if you want.
 - 🤖 A [Makefile](Makefile) with the most useful commands to install, test, lint, format and release your project.
 - 📃 Documentation structure using [mkdocs](http://www.mkdocs.org)
-- 🪵 Auto generation of change log using **gitchangelog** to keep a HISTORY.md file automatically based on your commit history on every release.
+- 💬 Auto generation of change log using **gitchangelog** to keep a HISTORY.md file automatically based on your commit history on every release.
 - 🐋 A simple [Containerfile](Containerfile) to build a container image for your project.  
   `Containerfile` is a more open standard for building container images than Dockerfile, you can use buildah or docker with this file.
 - 🧪 Testing structure using [pytest](https://docs.pytest.org/en/latest/)
@@ -31,7 +31,7 @@ A low dependency and really simple to start project template for Python Projects
 - 📊 Code coverage reports using [codecov](https://about.codecov.io/sign-up/)
 - 🛳️ Automatic release to [PyPI](https://pypi.org) using [twine](https://twine.readthedocs.io/en/latest/) and github actions.
 - 🎯 Entry points to execute your program using `python -m <project_name>` or `$ project_name` with basic CLI argument parsing.
-- 🔄 Continuous integration using [Github Actions](.github/workflows/) with jobs to lint, test and release your project.
+- 🔄 Continuous integration using [Github Actions](.github/workflows/) with jobs to lint, test and release your project on Linux, Mac and Windows environments.
 - 🖼️ An easy way to add a flask, fastapi, click or Typer application to your project with `make init`.
 
 > Curious about architectural decisions on this template? read [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  
