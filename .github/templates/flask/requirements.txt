@@ -1,9 +1,0 @@
-flask
-flask-admin
-flask-simplelogin
-flask-bootstrap
-flask-sqlalchemy
-sqlalchemy-serializer
-dynaconf
-click
-flask-restful
