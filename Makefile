@@ -1,5 +1,6 @@
 .ONESHELL:
 ENV_PREFIX=$(shell python -c "if __import__('pathlib').Path('.venv/bin/pip').exists(): print('.venv/bin/')")
+USING_POETRY=$(shell grep "tool.poetry" pyproject.toml && echo "yes")
 
 .PHONY: help
 help:             ## Show the help.
@@ -12,14 +13,16 @@ help:             ## Show the help.
 .PHONY: show
 show:             ## Show the current environment.
 	@echo "Current environment:"
+	@if [ "$(USING_POETRY)" ]; then poetry env info && exit; fi
 	@echo "Running using $(ENV_PREFIX)"
 	@$(ENV_PREFIX)python -V
 	@$(ENV_PREFIX)python -m site
 
 .PHONY: install
 install:          ## Install the project in dev mode.
+	@if [ "$(USING_POETRY)" ]; then poetry install && exit; fi
 	@echo "Don't forget to run 'make virtualenv' if you got errors."
-	@if [ ! -f pyproject.toml ]; then $(ENV_PREFIX)pip install -e .[test]; else poetry install --dev; fi
+	$(ENV_PREFIX)pip install -e .[test]
 
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
@@ -62,6 +65,7 @@ clean:            ## Clean unused files.
 
 .PHONY: virtualenv
 virtualenv:       ## Create a virtual environment.
+	@if [ "$(USING_POETRY)" ]; then poetry install && exit; fi
 	@echo "creating virtualenv ..."
 	@rm -rf .venv
 	@python3 -m venv .venv
@@ -94,12 +98,18 @@ switch-to-poetry: ## Switch to poetry package manager.
 	@echo "Switching to poetry ..."
 	@if ! poetry --version > /dev/null; then echo 'poetry is required, install from https://python-poetry.org/'; exit 1; fi
 	@rm -rf .venv
-	@poetry init --name=project_name --author=author_name
-	@for item in $(cat requirements.txt); do   poetry add "${item}"; done
-	@for item in $(cat requirements-test.txt); do   poetry add --dev "${item}"; done
-	@poetry install
+	@poetry init --no-interaction --name=a_flask_test --author=rochacbruno
+	@echo "" >> pyproject.toml
+	@echo "[tool.poetry.scripts]" >> pyproject.toml
+	@echo "project_name = 'project_name.__main__:main'" >> pyproject.toml
+	@cat requirements.txt | while read in; do poetry add --no-interaction "$${in}"; done
+	@cat requirements-test.txt | while read in; do poetry add --no-interaction "$${in}" --dev; done
+	@poetry install --no-interaction
+	@mkdir -p .github/backup
+	@mv requirements* .github/backup
+	@mv setup.py .github/backup
 	@echo "You have switched to https://python-poetry.org/ package manager."
-	@echo "Run `poetry shell`"
+	@echo "Please run 'poetry shell' or 'poetry run project_name'"
 
 .PHONY: init
 init:             ## Initialize the project based on an application template.
