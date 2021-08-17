@@ -57,7 +57,7 @@ echo "Repo name: ${repo_name}"
 echo "Applying ${template} template to this project"}
 ./.github/templates/${template}/apply.sh -a "${repo_owner}" -n "${repo_name}" -u "${repo_urlname}" -d "Awesome ${repo_name} created by ${repo_owner}"
 
-echo "Removing temporary template files"
-rm -rf .github/templates/${template}
+# echo "Removing temporary template files"
+# rm -rf .github/templates/${template}
 
 echo "Done! review, commit and push the changes"
