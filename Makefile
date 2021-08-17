@@ -106,6 +106,4 @@ switch-to-poetry: ## Switch to poetry package manager.
 
 .PHONY: init
 init:             ## Initialize the project based on an application template.
-	@read -p "Which template do you want to apply? [flask, fastapi, click, typer]? : " APPTEMPLATE
-	@echo "Initializing project based on $${APPTEMPLATE} template ..."
-	@./.github/templates/$${APPTEMPLATE}/apply.sh
+	@./.github/init.sh

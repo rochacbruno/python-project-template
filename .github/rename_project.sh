@@ -20,8 +20,6 @@ original_author="author_name"
 original_name="project_name"
 original_urlname="project_urlname"
 original_description="project_description"
-
-
 # for filename in $(find . -name "*.*") 
 for filename in $(git ls-files) 
 do
@@ -34,6 +32,7 @@ done
 
 mv project_name $name
 
-# This command runs only once!
-rm -rf .github/rename_project.sh
-rm -rf .github/workflows/rename_project.yml
+# This command runs only once on GHA!
+if [ -f .github/workflows/project_name.yml ]; then
+    mv .github/workflows/rename_project.yml .github/workflows/rename_project.yml.disabled
+fi

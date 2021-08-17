@@ -1,6 +1,6 @@
 # project_name Flask Application
 
-This is a Flask application.
+project_description
 
 ## Installation
 
