@@ -1,4 +1,0 @@
-flask-debugtoolbar
-flask-shell-ipython
-ipdb
-pytest-flask
