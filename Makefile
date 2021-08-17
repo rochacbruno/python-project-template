@@ -26,15 +26,12 @@ fmt:              ## Format code using black & isort.
 	$(ENV_PREFIX)isort project_name/
 	$(ENV_PREFIX)black -l 79 project_name/
 	$(ENV_PREFIX)black -l 79 tests/
-	$(ENV_PREFIX)black -l 79 .github/templates/
 
 .PHONY: lint
 lint:             ## Run pep8, black, mypy linters.
 	$(ENV_PREFIX)flake8 project_name/
-	$(ENV_PREFIX)flake8 .github/templates/
 	$(ENV_PREFIX)black -l 79 --check project_name/
 	$(ENV_PREFIX)black -l 79 --check tests/
-	$(ENV_PREFIX)black -l 79 --check .github/templates/
 	$(ENV_PREFIX)mypy --ignore-missing-imports project_name/
 
 .PHONY: test

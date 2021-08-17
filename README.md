@@ -3,6 +3,8 @@
 
 A low dependency and really simple to start project template for Python Projects.
 
+See also [Flask-Project-Template](https://github.com/rochacbruno/flask-project-template/) for a full feature Flask project including database, API, admin interface, etc.
+
 ### HOW TO USE THIS TEMPLATE
 
 > **DO NOT FORK** this is meant to be used from **[Use this template](https://github.com/rochacbruno/python-project-template/generate)** feature.
@@ -22,13 +24,9 @@ A low dependency and really simple to start project template for Python Projects
 ### What is included on this template?
 
 - 🖼️ Templates for starting multiple application types:
-  * **Basic low dependency** Python program (default)
-  * **Flask** with database, admin interface, restapi and authentication.
-  * **FastAPI** with database, authentication and Swagger UI.
-  * **Click** CLI
-  * **Typer** CLI
-  * more  
-  **Run `make init` to generate a new project based on a template.**
+  * **Basic low dependency** Python program (default) [use this template](https://github.com/rochacbruno/python-project-template/generate)
+  * **Flask** with database, admin interface, restapi and authentication [use this template](https://github.com/rochacbruno/flask-project-template/generate).
+  **or Run `make init` after cloning to generate a new project based on a template.**
 - 📦 A basic [setup.py](setup.py) file to provide installation, packaging and distribution for your project.  
   Template uses setuptools because it's the de-facto standard for Python packages, you can run `make switch-to-poetry` later if you want.
 - 🤖 A [Makefile](Makefile) with the most useful commands to install, test, lint, format and release your project.

@@ -14,6 +14,17 @@ if [ -z "${template}" ]; then
     read -p "Enter template name: " template
 fi
 
+repo_urlname=$(basename -s .git `git config --get remote.origin.url`)
+repo_name=$(basename -s .git `git config --get remote.origin.url` | tr '-' '_' | tr '[:upper:]' '[:lower:]')
+repo_owner=$(git config --get remote.origin.url | awk -F ':' '{print $2}' | awk -F '/' '{print $1}')
+echo "Repo name: ${repo_name}"
+echo "Repo owner: ${repo_owner}"
+echo "Repo urlname: ${repo_urlname}"
+
+if [ -f ".github/workflows/rename_project.yml" ]; then
+    .github/rename_project.sh -a "${repo_owner}" -n "${repo_name}" -u "${repo_urlname}" -d "Awesome ${repo_name} created by ${repo_owner}"
+fi
+
 function download_template {
     rm -rf "${template_dir}"
     mkdir -p .github/templates
@@ -47,12 +58,6 @@ else
     echo "Downloading ${template_url}"
     download_template
 fi
-
-echo "Rendering template"
-repo_urlname=$(basename -s .git `git config --get remote.origin.url`)
-repo_name=$(basename -s .git `git config --get remote.origin.url` | tr '-' '_' | tr '[:upper:]' '[:lower:]')
-repo_owner=$(git config --get remote.origin.url | awk -F ':' '{print $2}' | awk -F '/' '{print $1}')
-echo "Repo name: ${repo_name}"
 
 echo "Applying ${template} template to this project"}
 ./.github/templates/${template}/apply.sh -a "${repo_owner}" -n "${repo_name}" -u "${repo_urlname}" -d "Awesome ${repo_name} created by ${repo_owner}"

@@ -35,6 +35,7 @@ jobs:
       
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: ${{ steps.last-commit-message.outputs.msg }}
-          commit_options: '--amend --no-edit'
+          commit_message: "✅ Ready to clone and code."
+          # commit_message: ${{ steps.last-commit-message.outputs.msg }}
+          # commit_options: '--amend --no-edit'
           push_options: --force
