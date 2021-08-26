@@ -1,3 +1,4 @@
+import argparse  # pragma: no cover
 from . import BaseClass, base_function  # pragma: no cover
 
 
@@ -17,6 +18,37 @@ def main() -> None:  # pragma: no cover
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
+    parser = argparse.ArgumentParser(
+        description='project_name.',
+        epilog="Enjoy the project_name functionality!",
+    )
+    # This is required positional argument
+    parser.add_argument(
+        'name',
+        type=str,
+        help='The username',
+        default='author_name',
+    )
+    # This is optional named argument
+    parser.add_argument(
+        '-m',
+        '--message',
+        type=str,
+        help='The Message',
+        default='Hello',
+        required=False,
+    )
+    parser.add_argument(
+        '-v',
+        '--verbose',
+        action='store_true',
+        help='Optionally adds verbosity'
+    )
+    args = parser.parse_args()
+    print(f'{args.message} {args.name}!')
+    if args.verbose:
+        print('Verbose mode is on.')
+
     print("Executing main function")
     base = BaseClass()
     print(base.base_method())
