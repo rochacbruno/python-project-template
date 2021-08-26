@@ -1,4 +1,5 @@
 import argparse  # pragma: no cover
+
 from . import BaseClass, base_function  # pragma: no cover
 
 
@@ -19,35 +20,35 @@ def main() -> None:  # pragma: no cover
         * Run an application (Flask, FastAPI, Django, etc.)
     """
     parser = argparse.ArgumentParser(
-        description='project_name.',
+        description="project_name.",
         epilog="Enjoy the project_name functionality!",
     )
     # This is required positional argument
     parser.add_argument(
-        'name',
+        "name",
         type=str,
-        help='The username',
-        default='author_name',
+        help="The username",
+        default="author_name",
     )
     # This is optional named argument
     parser.add_argument(
-        '-m',
-        '--message',
+        "-m",
+        "--message",
         type=str,
-        help='The Message',
-        default='Hello',
+        help="The Message",
+        default="Hello",
         required=False,
     )
     parser.add_argument(
-        '-v',
-        '--verbose',
-        action='store_true',
-        help='Optionally adds verbosity'
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Optionally adds verbosity",
     )
     args = parser.parse_args()
-    print(f'{args.message} {args.name}!')
+    print(f"{args.message} {args.name}!")
     if args.verbose:
-        print('Verbose mode is on.')
+        print("Verbose mode is on.")
 
     print("Executing main function")
     base = BaseClass()
