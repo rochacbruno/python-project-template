@@ -44,6 +44,8 @@ See also [Flask-Project-Template](https://github.com/rochacbruno/flask-project-t
 > Curious about architectural decisions on this template? read [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  
 > If you want to contribute to this template please open an [issue](https://github.com/rochacbruno/python-project-template/issues) or fork and send a PULL REQUEST.
 
+[❤️ Sponsor this project](https://github.com/sponsors/rochacbruno/)
+
 <!--  DELETE THE LINES ABOVE THIS AND WRITE YOUR PROJECT README BELOW -->
 
 ---
