@@ -33,6 +33,4 @@ done
 mv project_name $name
 
 # This command runs only once on GHA!
-if [ ! -f .github/template.log ]; then
-    date +"%Y-%m-%d %T" > .github/template.log
-fi
+rm -rf .github/template.yml
