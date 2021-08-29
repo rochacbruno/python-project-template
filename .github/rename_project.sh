@@ -33,6 +33,6 @@ done
 mv project_name $name
 
 # This command runs only once on GHA!
-if [ -f .github/workflows/project_name.yml ]; then
+if [ -f .github/workflows/rename_project.yml ]; then
     mv .github/workflows/rename_project.yml .github/workflows/rename_project.yml.disabled
 fi
