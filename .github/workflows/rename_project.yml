@@ -28,14 +28,23 @@ jobs:
           echo "Renaming the project with -a(author) ${{ env.REPOSITORY_OWNER }} -n(name) ${{ env.REPOSITORY_NAME }} -u(urlname) ${{ env.REPOSITORY_URLNAME }}"
           .github/rename_project.sh -a ${{ env.REPOSITORY_OWNER }} -n ${{ env.REPOSITORY_NAME }} -u ${{ env.REPOSITORY_URLNAME }} -d "Awesome ${{ env.REPOSITORY_NAME }} created by ${{ env.REPOSITORY_OWNER }}"
 
-      - name: Get last commit message
-        id: last-commit-message
+      - name: This runs only once
         run: |
-          echo "::set-output name=msg::$(git log -1 --pretty=%s)"
+          # use the same author as the initial commit
+          git config user.email "$(git log -1 --pretty=format:'%ae')"
+          git config user.name "$(git log -1 --pretty=format:'%an')"
+          git add .
+          git commit -m "✅ Ready to clone and code."
+          git push origin $GITHUB_REF --force
+        
+#       - name: Get last commit message
+#         id: last-commit-message
+#         run: |
+#           echo "::set-output name=msg::$(git log -1 --pretty=%s)"
       
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "✅ Ready to clone and code."
-          # commit_message: ${{ steps.last-commit-message.outputs.msg }}
-          # commit_options: '--amend --no-edit'
-          push_options: --force
+#       - uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: "✅ Ready to clone and code."
+#           # commit_message: ${{ steps.last-commit-message.outputs.msg }}
+#           # commit_options: '--amend --no-edit'
+#           push_options: --force
