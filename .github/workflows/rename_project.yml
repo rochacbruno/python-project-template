@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   rename-project:
-    if: ${{ github.repository	!= 'rochacbruno/python-project-template' }}
+    if: ${{ !contains (github.repository, '/python-project-template') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
