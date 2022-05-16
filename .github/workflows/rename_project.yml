@@ -2,6 +2,8 @@ name: Rename the project from template
 
 on: [push]
 
+permissions: write-all
+
 jobs:
   rename-project:
     if: ${{ !contains (github.repository, '/python-project-template') }}
