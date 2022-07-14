@@ -17,7 +17,7 @@ See also
 3. Wait until the first run of CI finishes  
    (Github Actions will process the template and commit to your new repo)
 4. If you want [codecov](https://about.codecov.io/sign-up/) Reports and Automatic Release to [PyPI](https://pypi.org)  
-  On the new repository `settings->secrets` add your `PIPY_API_TOKEN` and `CODECOV_TOKEN` (get the tokens on respective websites)
+  On the new repository `settings->secrets` add your `PYPI_API_TOKEN` and `CODECOV_TOKEN` (get the tokens on respective websites)
 4. Read the file [CONTRIBUTING.md](CONTRIBUTING.md)
 5. Then clone your new project and happy coding!
 
