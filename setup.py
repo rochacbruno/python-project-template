@@ -30,7 +30,7 @@ def read_requirements(path):
 
 
 setup(
-    name="project_name",
+    name="author_name-project_name",
     version=read("project_name", "VERSION"),
     description="project_description",
     url="https://github.com/author_name/project_urlname/",
