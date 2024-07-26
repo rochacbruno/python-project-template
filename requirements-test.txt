@@ -1,4 +1,4 @@
-# This requirements are for development and testing only, not for production.
+# These requirements are for development and testing only, not for production.
 pytest
 coverage
 flake8
