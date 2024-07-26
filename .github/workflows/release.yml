@@ -1,4 +1,6 @@
 name: Upload Python Package
+permissions:
+  contents: write
 
 on:
   push:
