@@ -26,10 +26,12 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install UV
+        uses: astral-sh/setup-uv@v3
       - name: Install project
-        run: make install
+        run: uv sync --all-extras --dev
       - name: Run linter
-        run: make lint
+        run: uv run task lint
 
   tests_linux:
     needs: linter
@@ -44,10 +46,12 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install UV
+        uses: astral-sh/setup-uv@v3
       - name: Install project
-        run: make install
+        run: uv sync --all-extras --dev
       - name: Run tests
-        run: make test
+        run: uv run task test
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v3
         # with:
@@ -66,10 +70,12 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install UV
+        uses: astral-sh/setup-uv@v3
       - name: Install project
-        run: make install
+        run: uv sync --all-extras --dev
       - name: Run tests
-        run: make test
+        run: uv run task test
 
   tests_win:
     needs: linter
@@ -86,7 +92,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Pip
         run: pip install --user --upgrade pip
+      - name: Install UV
+        run: pip install uv
       - name: Install project
-        run: pip install -e .[test]
-      - name: run tests
-        run: pytest -s -vvvv -l --tb=long tests
+        run: uv sync --all-extras --dev
+      - name: Run tests
+        run: uv run task test
