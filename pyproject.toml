@@ -7,14 +7,20 @@ name = "project_name"
 version = "0.1.0"
 description = "project_description"
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.8"
 authors = [
     { name = "author_name", email = "author_email@exemplo.com" }
 ]
-# homepage = "https://github.com/author_name/project_urlname/"
+dependencies = [
+    "ruff>=0.7.1",
+]
+
+[project.urls]
+homepage = "https://github.com/author_name/project_urlname/"
 
 # Dependências de produção (adicione suas dependências aqui quando necessário)
-dependencies = []
+[dependency-groups]
+dev = []
 
 # Scripts de entrada
 [project.scripts]
@@ -33,3 +39,21 @@ test = [
     "mypy",
     "gitchangelog",
 ]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q -vv"
+pythonpath = ["/tests"]
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+target-version = "py310"
+
+[tool.taskipy.tasks]
+lint = "uvx ruff check tests"
+test = """
+    uv run --extra test pytest -s
+    uv run --extra test coverage xml
+    uv run --extra test coverage html
+    """
